@@ -47,7 +47,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(to right, #4CAF50, #2196F3, #FF9800, #9C27B0, #00BCD4);
+            background: linear-gradient(to right, #4CAF50, #2196F3, #FF9800, #9C27B0, #00BCD4, #E91E63, #673AB7);
         }
         
         .logo-container {
@@ -145,7 +145,7 @@
             transform: rotate(180deg);
         }
         
-        /* Cores específicas para cada categoria */
+        /* Cores específicas para cada categoria (reorganizadas) */
         .category-card:nth-child(1) .category-header {
             background: linear-gradient(to right, #ff9800, #ff5722);
         }
@@ -160,6 +160,14 @@
         
         .category-card:nth-child(4) .category-header {
             background: linear-gradient(to right, #00BCD4, #0097A7);
+        }
+        
+        .category-card:nth-child(5) .category-header {
+            background: linear-gradient(to right, #E91E63, #C2185B);
+        }
+        
+        .category-card:nth-child(6) .category-header {
+            background: linear-gradient(to right, #673AB7, #4527A0);
         }
         
         /* Conteúdo da categoria */
@@ -327,11 +335,6 @@
             background-color: #00BCD4;
             color: white;
             border-color: #00BCD4;
-        }
-        
-        /* Botões de pagamento para atendimentos */
-        .payment-select {
-            width: 100%;
         }
         
         /* Botões de ação */
@@ -790,15 +793,13 @@
                                     <div class="form-row">
                                         <label class="field-label">PAGAMENTO:</label>
                                         <div class="field-input">
-                                            <div class="payment-select">
-                                                <select id="pagamentoTipo" name="pagamentoTipo" required>
-                                                    <option value="">Selecione uma opção</option>
-                                                    <option value="ISENTO">ISENTO</option>
-                                                    <option value="25">R$ 25,00</option>
-                                                    <option value="30">R$ 30,00</option>
-                                                    <option value="50">R$ 50,00</option>
-                                                </select>
-                                            </div>
+                                            <select id="pagamentoTipo" name="pagamentoTipo" required>
+                                                <option value="">Selecione uma opção</option>
+                                                <option value="ISENTO">ISENTO</option>
+                                                <option value="25">R$ 25,00</option>
+                                                <option value="30">R$ 30,00</option>
+                                                <option value="50">R$ 50,00</option>
+                                            </select>
                                         </div>
                                     </div>
                                     
@@ -833,7 +834,220 @@
                     </div>
                 </div>
                 
-                <!-- Formulário 4: Troca de Titularidade -->
+                <!-- NOVO FORMULÁRIO 4: Quedas -->
+                <div class="category-card" data-category="quedas">
+                    <div class="category-header">
+                        <div class="category-title">
+                            <div class="category-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="category-name">
+                                <h3>Quedas</h3>
+                                <p>Registro de problemas de queda de sinal/conexão</p>
+                            </div>
+                        </div>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="form-container">
+                            <div class="form-section">
+                                <h2 class="form-title"><i class="fas fa-network-wired"></i> Registro de Quedas</h2>
+                                
+                                <form id="quedasForm">
+                                    <div class="form-row">
+                                        <label class="field-label">DATA:</label>
+                                        <div class="field-input">
+                                            <input type="date" id="dataQuedas" name="data" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">MKSOLUTIONS:</label>
+                                        <div class="field-input">
+                                            <input type="text" id="mksolutionsQuedas" name="mksolutions" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">ANM/U2000:</label>
+                                        <div class="field-input">
+                                            <input type="text" id="anmU2000Quedas" name="anmU2000" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">CTO/PACPON:</label>
+                                        <div class="field-input">
+                                            <input type="text" id="ctoPacpon" name="ctoPacpon" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">ORIGEM DO CONTATO E NOME:</label>
+                                        <div class="field-input">
+                                            <input type="text" id="origemContatoQuedas" name="origemContato" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">LOCALIZAÇÃO OU PONTO DE REFERÊNCIA:</label>
+                                        <div class="field-input">
+                                            <textarea id="localizacaoQuedas" name="localizacao" required></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">ANÁLISE:</label>
+                                        <div class="field-input">
+                                            <textarea id="analiseQuedas" name="analise" required placeholder="Descreva a análise da situação"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-actions">
+                                        <button type="reset" class="btn-reset">
+                                            <i class="fas fa-broom"></i> Limpar
+                                        </button>
+                                        <button type="submit" class="btn-submit">
+                                            <i class="fas fa-paper-plane"></i> Gerar Dados
+                                        </button>
+                                    </div>
+                                </form>
+                                
+                                <div class="result-container" id="resultContainerQuedas">
+                                    <div class="result-header">
+                                        DADOS DO REGISTRO DE QUEDAS
+                                    </div>
+                                    <div class="result-content" id="resultContentQuedas">
+                                        Os dados aparecerão aqui após o envio...
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn-copy" id="btnCopyQuedas">
+                                            <i class="fas fa-copy"></i> Copiar Dados
+                                        </button>
+                                    </div>
+                                    <div class="copy-feedback" id="copyFeedbackQuedas">
+                                        <i class="fas fa-check-circle"></i> Dados copiados com sucesso! Formulário limpo.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NOVO FORMULÁRIO 5: Lentidão / Oscilações -->
+                <div class="category-card" data-category="lentidao-oscilacoes">
+                    <div class="category-header">
+                        <div class="category-title">
+                            <div class="category-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="category-name">
+                                <h3>Lentidão / Oscilações</h3>
+                                <p>Registro de problemas de velocidade e estabilidade</p>
+                            </div>
+                        </div>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="form-container">
+                            <div class="form-section">
+                                <h2 class="form-title"><i class="fas fa-sync-alt"></i> Lentidão / Oscilações</h2>
+                                
+                                <form id="lentidaoForm">
+                                    <div class="form-row">
+                                        <label class="field-label">DATA:</label>
+                                        <div class="field-input">
+                                            <input type="date" id="dataLentidao" name="data" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">PROCEDIMENTOS:</label>
+                                        <div class="field-input">
+                                            <textarea id="procedimentos" name="procedimentos" required placeholder="Reparos, ajustes, configurações ou reinicialização no roteador"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">REINCIDENTE:</label>
+                                        <div class="field-input">
+                                            <div class="yes-no-group">
+                                                <div class="yes-no-option">
+                                                    <input type="radio" id="reincidente_sim" name="reincidente" value="SIM" required>
+                                                    <label for="reincidente_sim" class="yes-no-label">SIM</label>
+                                                </div>
+                                                <div class="yes-no-option">
+                                                    <input type="radio" id="reincidente_nao" name="reincidente" value="NÃO">
+                                                    <label for="reincidente_nao" class="yes-no-label">NÃO</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">CTO/PACPON:</label>
+                                        <div class="field-input">
+                                            <input type="text" id="ctoPacponLentidao" name="ctoPacpon" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">ANÁLISE:</label>
+                                        <div class="field-input">
+                                            <textarea id="analiseLentidao" name="analise" required placeholder="Informações que o cliente passou, e o que o agente pôde observar"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">ORIGEM DO CONTATO E NOME:</label>
+                                        <div class="field-input">
+                                            <input type="text" id="origemContatoLentidao" name="origemContato" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <label class="field-label">LOCALIZAÇÃO OU PONTO DE REFERÊNCIA:</label>
+                                        <div class="field-input">
+                                            <textarea id="localizacaoLentidao" name="localizacao" required></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-actions">
+                                        <button type="reset" class="btn-reset">
+                                            <i class="fas fa-broom"></i> Limpar
+                                        </button>
+                                        <button type="submit" class="btn-submit">
+                                            <i class="fas fa-paper-plane"></i> Gerar Dados
+                                        </button>
+                                    </div>
+                                </form>
+                                
+                                <div class="result-container" id="resultContainerLentidao">
+                                    <div class="result-header">
+                                        DADOS DO REGISTRO DE LENTIDÃO/OSCILAÇÕES
+                                    </div>
+                                    <div class="result-content" id="resultContentLentidao">
+                                        Os dados aparecerão aqui após o envio...
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn-copy" id="btnCopyLentidao">
+                                            <i class="fas fa-copy"></i> Copiar Dados
+                                        </button>
+                                    </div>
+                                    <div class="copy-feedback" id="copyFeedbackLentidao">
+                                        <i class="fas fa-check-circle"></i> Dados copiados com sucesso! Formulário limpo.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulário 6: Troca de Titularidade (AGORA ÚLTIMO) -->
                 <div class="category-card" data-category="troca-titularidade">
                     <div class="category-header">
                         <div class="category-title">
@@ -1031,11 +1245,13 @@
     <script>
         // Inicialização da página
         document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar datas
+            // Inicializar datas em todos os formulários
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('dataMudanca').value = today;
             document.getElementById('dataConexao').value = today;
             document.getElementById('dataOS').value = today;
+            document.getElementById('dataQuedas').value = today;
+            document.getElementById('dataLentidao').value = today;
             
             // Configurar expansão das categorias
             setupCategoryToggles();
@@ -1044,7 +1260,9 @@
             setupMudancaEnderecoForm();
             setupSemConexaoForm();
             setupAtendimentosForm();
-            setupTitularidadeForm();
+            setupQuedasForm();
+            setupLentidaoForm();
+            setupTitularidadeForm(); // Agora é o último
             
             // Abrir a primeira categoria por padrão
             document.querySelector('.category-card').classList.add('active');
@@ -1420,7 +1638,273 @@ PAGAMENTO: ${pagamentoFormatado}`;
             });
         }
         
-        // ===== FORMULÁRIO 4: TROCA DE TITULARIDADE =====
+        // ===== NOVO FORMULÁRIO 4: QUEDAS (COM CAMPOS DE TEXTO) =====
+        function setupQuedasForm() {
+            const form = document.getElementById('quedasForm');
+            const btnCopy = document.getElementById('btnCopyQuedas');
+            const resultContainer = document.getElementById('resultContainerQuedas');
+            const resultContent = document.getElementById('resultContentQuedas');
+            const copyFeedback = document.getElementById('copyFeedbackQuedas');
+            let lastFormattedData = null;
+            
+            // Manipular envio do formulário
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Coletar os dados do formulário
+                const formData = {
+                    data: document.getElementById('dataQuedas').value,
+                    mksolutions: document.getElementById('mksolutionsQuedas').value,
+                    anmU2000: document.getElementById('anmU2000Quedas').value,
+                    ctoPacpon: document.getElementById('ctoPacpon').value,
+                    origemContato: document.getElementById('origemContatoQuedas').value,
+                    localizacao: document.getElementById('localizacaoQuedas').value,
+                    analise: document.getElementById('analiseQuedas').value
+                };
+                
+                // Validar campos obrigatórios
+                if (!formData.mksolutions.trim() || !formData.anmU2000.trim() || !formData.ctoPacpon.trim() || !formData.origemContato.trim() || !formData.localizacao.trim() || !formData.analise.trim()) {
+                    alert('Por favor, preencha todos os campos obrigatórios: MKSOLUTIONS, ANM/U2000, CTO/PACPON, ORIGEM DO CONTATO, LOCALIZAÇÃO e ANÁLISE.');
+                    return;
+                }
+                
+                // Formatar dados para exibição
+                const dadosFormatados = formatarDadosQuedasParaExibicao(formData);
+                
+                // Exibir os dados na tela
+                resultContent.textContent = dadosFormatados;
+                resultContainer.classList.add('active');
+                
+                // Salvar dados para cópia
+                lastFormattedData = formatarDadosQuedasParaCopiar(formData);
+                
+                // Rolar até a seção de resultados
+                resultContainer.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            
+            // Botão para copiar dados
+            btnCopy.addEventListener('click', function() {
+                if (!lastFormattedData) {
+                    alert('Nenhum dado disponível para copiar. Envie o formulário primeiro.');
+                    return;
+                }
+                
+                // Copiar para área de transferência
+                navigator.clipboard.writeText(lastFormattedData)
+                    .then(() => {
+                        // Feedback visual
+                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
+                        btnCopy.disabled = true;
+                        
+                        // Mostrar mensagem de feedback
+                        copyFeedback.classList.add('show');
+                        
+                        // Limpar formulário após 1 segundo
+                        setTimeout(() => {
+                            limparFormularioQuedas();
+                        }, 1000);
+                    })
+                    .catch(err => {
+                        console.error('Erro ao copiar:', err);
+                        alert('Erro ao copiar os dados. Tente selecionar e copiar manualmente.');
+                    });
+            });
+            
+            // Função para formatar dados para exibição
+            function formatarDadosQuedasParaExibicao(formData) {
+                const dataFormatada = formatarDataBrasileira(formData.data);
+                
+                return `═══════════════════════════════════════════════════
+                  REGISTRO DE QUEDAS
+═══════════════════════════════════════════════════
+
+📅 DATA: ${dataFormatada}
+📊 MKSOLUTIONS: ${formData.mksolutions}
+📡 ANM/U2000: ${formData.anmU2000}
+🔌 CTO/PACPON: ${formData.ctoPacpon}
+👤 ORIGEM DO CONTATO: ${formData.origemContato}
+📍 LOCALIZAÇÃO: ${formData.localizacao}
+🔍 ANÁLISE: ${formData.analise}
+═══════════════════════════════════════════════════`;
+            }
+            
+            // Função para formatar dados para cópia
+            function formatarDadosQuedasParaCopiar(formData) {
+                const dataFormatada = formatarDataBrasileira(formData.data);
+                
+                return `REGISTRO DE QUEDAS
+
+DATA: ${dataFormatada}
+MKSOLUTIONS: ${formData.mksolutions}
+ANM/U2000: ${formData.anmU2000}
+CTO/PACPON: ${formData.ctoPacpon}
+ORIGEM DO CONTATO: ${formData.origemContato}
+LOCALIZAÇÃO: ${formData.localizacao}
+ANÁLISE: ${formData.analise}`;
+            }
+            
+            // Função para limpar formulário
+            function limparFormularioQuedas() {
+                form.reset();
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('dataQuedas').value = today;
+                resultContainer.classList.remove('active');
+                copyFeedback.classList.remove('show');
+                lastFormattedData = null;
+                btnCopy.disabled = false;
+                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+            }
+            
+            // Botão reset
+            form.querySelector('.btn-reset').addEventListener('click', function() {
+                setTimeout(() => {
+                    limparFormularioQuedas();
+                }, 100);
+            });
+        }
+        
+        // ===== NOVO FORMULÁRIO 5: LENTIDÃO / OSCILAÇÕES =====
+        function setupLentidaoForm() {
+            const form = document.getElementById('lentidaoForm');
+            const btnCopy = document.getElementById('btnCopyLentidao');
+            const resultContainer = document.getElementById('resultContainerLentidao');
+            const resultContent = document.getElementById('resultContentLentidao');
+            const copyFeedback = document.getElementById('copyFeedbackLentidao');
+            let lastFormattedData = null;
+            
+            // Manipular envio do formulário
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Coletar os dados do formulário
+                const formData = {
+                    data: document.getElementById('dataLentidao').value,
+                    procedimentos: document.getElementById('procedimentos').value,
+                    reincidente: document.querySelector('input[name="reincidente"]:checked')?.value || 'Não informado',
+                    ctoPacpon: document.getElementById('ctoPacponLentidao').value,
+                    analise: document.getElementById('analiseLentidao').value,
+                    origemContato: document.getElementById('origemContatoLentidao').value,
+                    localizacao: document.getElementById('localizacaoLentidao').value
+                };
+                
+                // Validar campos obrigatórios
+                if (!formData.procedimentos.trim() || !formData.ctoPacpon.trim() || !formData.analise.trim() || !formData.origemContato.trim() || !formData.localizacao.trim()) {
+                    alert('Por favor, preencha todos os campos obrigatórios: PROCEDIMENTOS, CTO/PACPON, ANÁLISE, ORIGEM DO CONTATO e LOCALIZAÇÃO.');
+                    return;
+                }
+                
+                // Validar seleções obrigatórias
+                if (!formData.reincidente) {
+                    alert('Por favor, informe se o caso é REINCIDENTE.');
+                    return;
+                }
+                
+                // Formatar dados para exibição
+                const dadosFormatados = formatarDadosLentidaoParaExibicao(formData);
+                
+                // Exibir os dados na tela
+                resultContent.textContent = dadosFormatados;
+                resultContainer.classList.add('active');
+                
+                // Salvar dados para cópia
+                lastFormattedData = formatarDadosLentidaoParaCopiar(formData);
+                
+                // Rolar até a seção de resultados
+                resultContainer.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            
+            // Botão para copiar dados
+            btnCopy.addEventListener('click', function() {
+                if (!lastFormattedData) {
+                    alert('Nenhum dado disponível para copiar. Envie o formulário primeiro.');
+                    return;
+                }
+                
+                // Copiar para área de transferência
+                navigator.clipboard.writeText(lastFormattedData)
+                    .then(() => {
+                        // Feedback visual
+                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
+                        btnCopy.disabled = true;
+                        
+                        // Mostrar mensagem de feedback
+                        copyFeedback.classList.add('show');
+                        
+                        // Limpar formulário após 1 segundo
+                        setTimeout(() => {
+                            limparFormularioLentidao();
+                        }, 1000);
+                    })
+                    .catch(err => {
+                        console.error('Erro ao copiar:', err);
+                        alert('Erro ao copiar os dados. Tente selecionar e copiar manualmente.');
+                    });
+            });
+            
+            // Função para formatar dados para exibição
+            function formatarDadosLentidaoParaExibicao(formData) {
+                const dataFormatada = formatarDataBrasileira(formData.data);
+                
+                return `═══════════════════════════════════════════════════
+          LENTIDÃO / OSCILAÇÕES
+═══════════════════════════════════════════════════
+
+📅 DATA: ${dataFormatada}
+🔧 PROCEDIMENTOS: ${formData.procedimentos}
+🔄 REINCIDENTE: ${formData.reincidente}
+🔌 CTO/PACPON: ${formData.ctoPacpon}
+🔍 ANÁLISE: ${formData.analise}
+👤 ORIGEM DO CONTATO: ${formData.origemContato}
+📍 LOCALIZAÇÃO: ${formData.localizacao}
+═══════════════════════════════════════════════════`;
+            }
+            
+            // Função para formatar dados para cópia
+            function formatarDadosLentidaoParaCopiar(formData) {
+                const dataFormatada = formatarDataBrasileira(formData.data);
+                
+                return `LENTIDÃO / OSCILAÇÕES
+
+DATA: ${dataFormatada}
+PROCEDIMENTOS: ${formData.procedimentos}
+REINCIDENTE: ${formData.reincidente}
+CTO/PACPON: ${formData.ctoPacpon}
+ANÁLISE: ${formData.analise}
+ORIGEM DO CONTATO: ${formData.origemContato}
+LOCALIZAÇÃO: ${formData.localizacao}`;
+            }
+            
+            // Função para limpar formulário
+            function limparFormularioLentidao() {
+                form.reset();
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('dataLentidao').value = today;
+                resultContainer.classList.remove('active');
+                copyFeedback.classList.remove('show');
+                lastFormattedData = null;
+                btnCopy.disabled = false;
+                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+            }
+            
+            // Botão reset
+            form.querySelector('.btn-reset').addEventListener('click', function() {
+                setTimeout(() => {
+                    limparFormularioLentidao();
+                }, 100);
+            });
+        }
+        
+        // ===== FORMULÁRIO 6: TROCA DE TITULARIDADE (AGORA ÚLTIMO) =====
         function setupTitularidadeForm() {
             const form = document.getElementById('titularidadeForm');
             const btnCopy = document.getElementById('btnCopyTitularidade');
