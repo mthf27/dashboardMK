@@ -414,6 +414,7 @@
             line-height: 1.4;
             max-height: 250px;
             overflow-y: auto;
+            text-transform: uppercase; /* Adicionado para transformar em CAPS LOCK */
         }
         
         .copy-feedback {
@@ -1282,6 +1283,11 @@
             });
         }
         
+        // ===== FUNÇÃO PARA TRANSFORMAR EM CAPS LOCK =====
+        function transformarEmCapsLock(texto) {
+            return texto.toUpperCase();
+        }
+        
         // ===== FORMULÁRIO 1: MUDANÇA DE ENDEREÇO =====
         function setupMudancaEnderecoForm() {
             const form = document.getElementById('mudancaEnderecoForm');
@@ -1312,7 +1318,10 @@
                 }
                 
                 // Formatar dados para exibição
-                const dadosFormatados = formatarDadosMudancaParaExibicao(formData);
+                let dadosFormatados = formatarDadosMudancaParaExibicao(formData);
+                
+                // Transformar em CAPS LOCK
+                dadosFormatados = transformarEmCapsLock(dadosFormatados);
                 
                 // Exibir os dados na tela
                 resultContent.textContent = dadosFormatados;
@@ -1320,6 +1329,7 @@
                 
                 // Salvar dados para cópia
                 lastFormattedData = formatarDadosMudancaParaCopiar(formData);
+                lastFormattedData = transformarEmCapsLock(lastFormattedData);
                 
                 // Rolar até a seção de resultados
                 resultContainer.scrollIntoView({ 
@@ -1339,7 +1349,7 @@
                 navigator.clipboard.writeText(lastFormattedData)
                     .then(() => {
                         // Feedback visual
-                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.textContent = '✓ COPIADO!';
                         btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
                         btnCopy.disabled = true;
                         
@@ -1391,22 +1401,22 @@ ORIGEM DO CONTATO: ${formData.origemContato}`;
             }
             
             // Função para limpar formulário
-function limparFormularioMudanca() {
-    // Salvar a data atual antes de limpar
-    const dataAtual = document.getElementById('dataMudanca').value;
-    
-    form.reset();
-    
-    // Restaurar a data que estava no formulário
-    document.getElementById('dataMudanca').value = dataAtual;
-    
-    resultContainer.classList.remove('active');
-    copyFeedback.classList.remove('show');
-    lastFormattedData = null;
-    btnCopy.disabled = false;
-    btnCopy.textContent = 'Copiar Dados';
-    btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
-}
+            function limparFormularioMudanca() {
+                // Salvar a data atual antes de limpar
+                const dataAtual = document.getElementById('dataMudanca').value;
+                
+                form.reset();
+                
+                // Restaurar a data que estava no formulário
+                document.getElementById('dataMudanca').value = dataAtual;
+                
+                resultContainer.classList.remove('active');
+                copyFeedback.classList.remove('show');
+                lastFormattedData = null;
+                btnCopy.disabled = false;
+                btnCopy.textContent = 'COPIAR DADOS';
+                btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+            }
             
             // Botão reset
             form.querySelector('.btn-reset').addEventListener('click', function() {
@@ -1442,13 +1452,16 @@ function limparFormularioMudanca() {
                 const dataFormatada = formatarData(data);
                 
                 // Gerar conteúdo
-                const resultHTML = `DATA: ${dataFormatada}
+                let resultHTML = `DATA: ${dataFormatada}
 EQUIPAMENTOS: ${equipamentos}
 MKSOLUTIONS: ${mksolutions}
 ANM/U2000: ${anm_u2000}
 CTO: ${cto}
 ORIGEM DO CONTATO: ${origem_contato}
 LOCALIZAÇÃO: ${localizacao}`;
+                
+                // Transformar em CAPS LOCK
+                resultHTML = transformarEmCapsLock(resultHTML);
                 
                 // Exibir resultados
                 resultContent.textContent = resultHTML;
@@ -1472,7 +1485,7 @@ LOCALIZAÇÃO: ${localizacao}`;
                 navigator.clipboard.writeText(lastFormattedData)
                     .then(() => {
                         // Feedback visual
-                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.textContent = '✓ COPIADO!';
                         btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
                         btnCopy.disabled = true;
                         
@@ -1499,7 +1512,7 @@ LOCALIZAÇÃO: ${localizacao}`;
                 copyFeedback.classList.remove('show');
                 lastFormattedData = null;
                 btnCopy.disabled = false;
-                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.textContent = 'COPIAR DADOS';
                 btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
             }
             
@@ -1546,7 +1559,10 @@ LOCALIZAÇÃO: ${localizacao}`;
                 }
                 
                 // Formatar dados para exibição
-                const dadosFormatados = formatarDadosAtendimentosParaExibicao(formData);
+                let dadosFormatados = formatarDadosAtendimentosParaExibicao(formData);
+                
+                // Transformar em CAPS LOCK
+                dadosFormatados = transformarEmCapsLock(dadosFormatados);
                 
                 // Exibir os dados na tela
                 resultContent.textContent = dadosFormatados;
@@ -1554,6 +1570,7 @@ LOCALIZAÇÃO: ${localizacao}`;
                 
                 // Salvar dados para cópia
                 lastFormattedData = formatarDadosAtendimentosParaCopiar(formData);
+                lastFormattedData = transformarEmCapsLock(lastFormattedData);
                 
                 // Rolar até a seção de resultados
                 resultContainer.scrollIntoView({ 
@@ -1573,7 +1590,7 @@ LOCALIZAÇÃO: ${localizacao}`;
                 navigator.clipboard.writeText(lastFormattedData)
                     .then(() => {
                         // Feedback visual
-                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.textContent = '✓ COPIADO!';
                         btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
                         btnCopy.disabled = true;
                         
@@ -1631,7 +1648,7 @@ PAGAMENTO: ${pagamentoFormatado}`;
                 copyFeedback.classList.remove('show');
                 lastFormattedData = null;
                 btnCopy.disabled = false;
-                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.textContent = 'COPIAR DADOS';
                 btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
             }
             
@@ -1674,7 +1691,10 @@ PAGAMENTO: ${pagamentoFormatado}`;
                 }
                 
                 // Formatar dados para exibição
-                const dadosFormatados = formatarDadosQuedasParaExibicao(formData);
+                let dadosFormatados = formatarDadosQuedasParaExibicao(formData);
+                
+                // Transformar em CAPS LOCK
+                dadosFormatados = transformarEmCapsLock(dadosFormatados);
                 
                 // Exibir os dados na tela
                 resultContent.textContent = dadosFormatados;
@@ -1682,6 +1702,7 @@ PAGAMENTO: ${pagamentoFormatado}`;
                 
                 // Salvar dados para cópia
                 lastFormattedData = formatarDadosQuedasParaCopiar(formData);
+                lastFormattedData = transformarEmCapsLock(lastFormattedData);
                 
                 // Rolar até a seção de resultados
                 resultContainer.scrollIntoView({ 
@@ -1701,7 +1722,7 @@ PAGAMENTO: ${pagamentoFormatado}`;
                 navigator.clipboard.writeText(lastFormattedData)
                     .then(() => {
                         // Feedback visual
-                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.textContent = '✓ COPIADO!';
                         btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
                         btnCopy.disabled = true;
                         
@@ -1761,7 +1782,7 @@ ANÁLISE: ${formData.analise}`;
                 copyFeedback.classList.remove('show');
                 lastFormattedData = null;
                 btnCopy.disabled = false;
-                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.textContent = 'COPIAR DADOS';
                 btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
             }
             
@@ -1810,7 +1831,10 @@ ANÁLISE: ${formData.analise}`;
                 }
                 
                 // Formatar dados para exibição
-                const dadosFormatados = formatarDadosLentidaoParaExibicao(formData);
+                let dadosFormatados = formatarDadosLentidaoParaExibicao(formData);
+                
+                // Transformar em CAPS LOCK
+                dadosFormatados = transformarEmCapsLock(dadosFormatados);
                 
                 // Exibir os dados na tela
                 resultContent.textContent = dadosFormatados;
@@ -1818,6 +1842,7 @@ ANÁLISE: ${formData.analise}`;
                 
                 // Salvar dados para cópia
                 lastFormattedData = formatarDadosLentidaoParaCopiar(formData);
+                lastFormattedData = transformarEmCapsLock(lastFormattedData);
                 
                 // Rolar até a seção de resultados
                 resultContainer.scrollIntoView({ 
@@ -1837,7 +1862,7 @@ ANÁLISE: ${formData.analise}`;
                 navigator.clipboard.writeText(lastFormattedData)
                     .then(() => {
                         // Feedback visual
-                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.textContent = '✓ COPIADO!';
                         btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
                         btnCopy.disabled = true;
                         
@@ -1897,7 +1922,7 @@ LOCALIZAÇÃO: ${formData.localizacao}`;
                 copyFeedback.classList.remove('show');
                 lastFormattedData = null;
                 btnCopy.disabled = false;
-                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.textContent = 'COPIAR DADOS';
                 btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
             }
             
@@ -1949,7 +1974,10 @@ LOCALIZAÇÃO: ${formData.localizacao}`;
                 }
                 
                 // Formatar dados para exibição
-                const dadosFormatados = formatarDadosTitularidadeParaExibicao(formData);
+                let dadosFormatados = formatarDadosTitularidadeParaExibicao(formData);
+                
+                // Transformar em CAPS LOCK
+                dadosFormatados = transformarEmCapsLock(dadosFormatados);
                 
                 // Exibir os dados na tela
                 resultContent.textContent = dadosFormatados;
@@ -1957,6 +1985,7 @@ LOCALIZAÇÃO: ${formData.localizacao}`;
                 
                 // Salvar dados para cópia
                 lastFormattedData = formatarDadosTitularidadeParaCopiar(formData);
+                lastFormattedData = transformarEmCapsLock(lastFormattedData);
                 
                 // Rolar até a seção de resultados
                 resultContainer.scrollIntoView({ 
@@ -1976,7 +2005,7 @@ LOCALIZAÇÃO: ${formData.localizacao}`;
                 navigator.clipboard.writeText(lastFormattedData)
                     .then(() => {
                         // Feedback visual
-                        btnCopy.textContent = '✓ Copiado!';
+                        btnCopy.textContent = '✓ COPIADO!';
                         btnCopy.style.background = 'linear-gradient(to right, #2E7D32, #1B5E20)';
                         btnCopy.disabled = true;
                         
@@ -2036,7 +2065,7 @@ INFORMADO AO RENAN: ${formData.renan}`;
                 copyFeedback.classList.remove('show');
                 lastFormattedData = null;
                 btnCopy.disabled = false;
-                btnCopy.textContent = 'Copiar Dados';
+                btnCopy.textContent = 'COPIAR DADOS';
                 btnCopy.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
             }
             
@@ -2049,23 +2078,23 @@ INFORMADO AO RENAN: ${formData.renan}`;
         }
         
         // ===== FUNÇÕES UTILITÁRIAS =====
-function formatarDataBrasileira(dataString) {
-    if (!dataString) return 'Não informada';
-    
-    // Exemplo: "2024-03-20" → "20/03/2024"
-    const partes = dataString.split('-');
-    if (partes.length === 3) {
-        return `${partes[2]}/${partes[1]}/${partes[0]}`;
-    }
-    return dataString;
-}
+        function formatarDataBrasileira(dataString) {
+            if (!dataString) return 'NÃO INFORMADA';
+            
+            // Exemplo: "2024-03-20" → "20/03/2024"
+            const partes = dataString.split('-');
+            if (partes.length === 3) {
+                return `${partes[2]}/${partes[1]}/${partes[0]}`;
+            }
+            return dataString;
+        }
 
-function formatarData(data) {
-    return formatarDataBrasileira(data);
-}
+        function formatarData(data) {
+            return formatarDataBrasileira(data);
+        }
         
         function formatarPagamento(valor) {
-            if (!valor) return 'Não informado';
+            if (!valor) return 'NÃO INFORMADO';
             
             switch(valor) {
                 case 'ISENTO':
